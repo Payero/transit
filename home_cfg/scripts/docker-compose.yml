@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  db:
+    image: mysql
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_PASSWORD: mysql_admin
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: unless-stopped
+    ports:
+        - 8080:8080
+
+

@@ -1,0 +1,29 @@
+{
+  "images":
+    [
+      {
+        "cloud-service": "AWS",
+        "configuration":
+        {
+          "image-id":"ami-451e6a3f",
+          "number-free-agents":0,
+          "security-group":"sg-54410d2f",
+          "subnet-id":"subnet-d7008b8f",
+          "ssh-key-file":"aws_serv_server_key",
+          "flags":
+            {
+              "session-id": "Service-Node", 
+              "Name": "Host-Agent"
+            },
+          "startup-command":"/data/ccdp/ccdp_install.py -a download -d s3://ccdp-settings/ccdp-engine.tgz -w -t /data/ccdp",
+          "assignment-command":"/home/oeg/scripts/test.sh",
+          "region":"us-east-1",
+          "role-name":"developer",
+          "proxy-url":"https://ax-ccdp.com/proxy/east",
+          "proxy-port": 9999,
+          "credentials-file":"/home/oeg/.aws/credentials",
+          "profile-name": "developer"
+        }
+      }
+    ]
+}

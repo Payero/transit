@@ -1,0 +1,218 @@
+#!/bin/bash
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+############################################
+# Environment Variables
+############################################
+export JAVA_HOME=/usr/java/latest
+export PATH="${PATH}:/sbin:~/.local/bin:/projects/users/oegante/apps/jython2.7.0/bin:~/scripts"
+
+export AWS_ACCESS_KEY=AKIAILDTHAKOE7G3SFGA
+export AWS_SECRET_ACCESS_KEY=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
+
+# Used as the location for CCDP
+export CCDP_HOME=~/workspace/ccdp-engine
+export CCDP_GUI=~/workspace/ccdp-gui/frontend/server
+
+if [ -z "${PYTHONPATH}" ]; then
+        export PYTHONPATH="${CCDP_GUI}/src"
+else
+        export PYTHONPATH="${PYTHONPATH}:${CCDP_GUI}/src"
+fi
+
+
+#####################################################
+#  Adding more memory to Node
+#####################################################
+export NODE_OPTIONS="--max-old-space-size=24576"
+export NODE_TLS_REJECT_UNAUTHORIZED=0
+
+#####################################################
+#  BITS and RFIMS Env. Variables
+#####################################################
+
+export BITS_DATA_DIR=~/workspace/rfims-ssw/bits-engine/data
+export BITS_AMQ_CFG_FILE=~/workspace/bits-engine/test.config.json
+
+
+export AMQ_INC=/usr/local/include/activemq-cpp-3.10.0
+export CPP_API_HOME=~/workspace/rfims-ssw/rfims-cpp_api
+export PROTO_HOME=/opt/dev/protobuf
+export SSW_BASE_DIR=/nishome/oegante/workspace/rfims-ssw
+
+
+# Needed by bits-external-link
+export RFIMS_PROTO="${SSW_BASE_DIR}/rfims-cpp_api/proto/rfims.proto"
+
+# Needed by bits-activemq
+#export AMQ_HOST=localhost
+export AMQ_HOST=localhost
+export AMQ_PORT=61613
+export AMQ_USER='admin'
+export AMQ_PASS='admin'
+
+export DB_PORT_27017_TCP_ADDR=localhost
+export AMQ_PORT_61616_TCP_ADDR=localhost; 
+
+# Needed by bits-mongodb
+export MONGODB_HOST=localhost
+export MONGODB_PORT=27017
+export MONGODB_DB=RFIMS
+
+# Needed by rfims-cpp_api
+export RCA_ACTIVEMQ_URI="tcp://${AMQ_HOST}:61616"
+
+# Needed by the bits-rfims-settings
+export RFIMS_CFG_FILE=${SSW_BASE_DIR}/rfims-global-config.json
+
+
+
+
+# The location of the git repository, from here I can get
+#   ccdp-enine
+#   ccdp-gui
+#   brecky
+export GIT_URL=https://oganteaume@gitlab.lgsinnovations.com/ccdp/
+
+if [ -z "${LD_LIBRARY_PATH}" ]; then
+	export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib64"
+else
+	export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib:/usr/lib64"
+fi
+
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${CPP_API_HOME}/cpp/lib"
+
+
+export APPS_DIR=/projects/users/oegante/apps
+export BROWSER=/usr/bin/firefox
+
+export SONAR_HOME=/projects/users/oegante/apps/sonar-scanner
+export PATH="${PATH}:/${SONAR_HOME}/bin"
+
+export tgt="~/Collection"
+alias tgt="cd ~/Collection"
+
+############################################
+#     Functions
+############################################
+
+function _nedit { nedit "$@" & }
+function _gedit { gedit "$@" & }
+
+alias rstart="sudo systemctl start rfims-ui"
+alias rstatus="sudo systemctl status rfims-ui -l"
+alias rstat=rstatus
+alias rstop="sudo systemctl stop rfims-ui"
+alias rrestart="sudo systemctl restart rfims-ui"
+
+alias ssw="cd ~/workspace/rfims-ssw"
+
+alias sublime="/opt/sublime_text/sublime_text"
+alias chrome="/usr/bin/google-chrome &"
+alias net="sudo service networking restart"
+alias vncserver="vncserver -geometry 1920x1080 "
+alias ne=_nedit
+alias ge=_gedit
+alias se=sublime
+alias office="libreoffice &"
+
+# Alias from being added to the sudo file
+alias yum="sudo yum "
+alias netstat="sudo netstat -alp "
+alias scan="clamscan -vri /run/media/oegante"
+alias myip="curl ipinfo.io/ip"
+alias compass="mongodb-compass &"
+
+alias dc="docker-compose "
+alias pg="~/scripts/ps_grep.sh "
+alias pk="~/scripts/ps_grep_kill.sh "
+alias ka="~/scripts/kill_all.sh "
+
+alias xvnc="sudo service x11vncserver start"
+alias eclipse="${APPS_DIR}/eclipse/eclipse &"
+alias tf="tail -n 300 -F "
+alias ssd="~/scripts/ssd.sh "
+alias sz="~/scripts/size.sh "
+alias dcr=" docker rm $(docker ps -aq --filter status=exited)"
+alias top=htop
+alias citrix="pk ICAClient; rm -fR /nishome/oegante/.ICAClient/tmp; /opt/Citrix/ICAClient/selfservice --icaroot /opt/Citrix/ICAClient &"
+alias q=~/scripts/quote.sh
+
+alias myip="curl ipinfo.io/ip"
+
+alias send='${CCDP_HOME}/bin/send_task.sh -f '
+alias send_rand='send ${CCDP_HOME}/data/rand_time.json'
+alias clone="~/scripts/clone_ccdp.sh"
+
+alias brecky="python /home/oeg/dev/brecky/app/brecky.py --ip=0.0.0.0 --port=5000 --mongoip=localhost --mongoport=27017 --db=brecky --seed=/home/oeg/dev/brecky/app/signup_data.json --export=/home/oeg/dev/brecky/out/signup_data_out.json"
+
+
+alias saws="~/scripts/ssh_2_aws.sh "
+alias ash="~/scripts/ssh_2_aws.sh "
+
+
+alias jf="~/scripts/jfind.sh "
+
+alias ccdp_set="sudo ${CCDP_HOME}/scripts/ccdp_set.sh"
+
+alias ccdp="cd ${CCDP_HOME}"
+alias ccdg="cd ${CCDP_GUI}"
+
+alias lgs_mnt="sudo  mount -v -t cifs -o username=oganteaume,domain=lgsdirect,password=M@rci@n0T3rc0,iocharset=utf8,sec=ntlm,uid=1039,gid=1000 //lgs-fs15.lgsdirect.com/Home_Folder/oganteaume /media/lgs"
+alias lgs_umnt="sudo umount -v /media/lgs"
+
+alias vpn="echo ''; echo 'Password:       {personal-factor}{RSA-key-factor}'; echo 'Group Password: L8xd0c2M'; echo ''"
+
+alias bits="cd ~/workspace/bits-engine"
+
+alias server="vncviewer 52.205.26.225:7 "
+alias vncsrv="vncserver -geometry 1920x1080 -name Desktop "
+
+
+alias gui="python ${CCDP_GUI}/src/server.py --ip=0.0.0.0 --port=5000 --db=ccdp --collection=modules --logfile=${CCDP_GUI}/logs/ccdp.log --amq-ip=localhost --amq-port=61616 --seed-db=${CCDP_GUI}/data/modules-mongo.json --db-ip=localhost --db-port=27017"
+alias service="sudo service "
+alias systemctl="sudo systemctl "
+
+alias ec2-di='aws ec2 describe-instances --output table --query "Reservations[].Instances[].{name:Tags[?Key=='\''Name'\''] | [0].Value, instante_id:InstanceId, ip_address:PrivateIpAddress, state:State.Name}"'
+alias edi=ec2-di
+
+alias rand="send ${CCDP_HOME}/data/rand_time.json"
+alias ccdp_up="${CCDP_HOME}/python/ccdp_install.py -a upload -d ${CCDP_HOME}/dist/ccdp-engine.tgz -m ${CCDP_HOME}/config/mesos/ccdp_mesos_settings.json -t s3://ccdp-settings"
+alias ccdp_down="cp ${CCDP_HOME}/python/ccdp_install.py /data/ccdp/. && sudo /data/ccdp/ccdp_install.py -a download -d s3://ccdp-settings/ccdp-engine.tgz -w -t /data/ccdp"
+
+alias dbr="docker run -it --link mysql:mysql --rm mysql sh -c 'exec mysql -h localhost -P 3306 -uroot --password=password'"
+alias citirx="~/scripts/citirx.sh"
+
+alias rdp="xfreerdp -g 1920x1050 -u oganteaume 10.215.35.247 "
+
+#watchme |  Syst3mS0ftw@r3
+alias cns="vncviewer -via cns :6 &"
+alias wallops="vncviewer -via wallops :6 &"
+alias miami="vncviewer -via miami :6 &"
+alias suitland="vncviewer -via suitland :6 &"
+alias oeg="vncviewer -via cns :7 &"
+
+alias cns-dev="vncviewer -via cns-dev :6 &"
+alias miami-dev="vncviewer -via miami-dev :6 &"
+
+alias carriers="vncviewer -via carriers :6 &"
+
+alias cns-dulles="vncviewer 10.10.10.12 :1 &"
+alias miami-dulles="vncviewer 10.10.10.9 :1 &"
+alias suitland-dulles="vncviewer 10.10.10.15 :1 &"
+alias wallops-dulles="vncviewer -via 10.10.10.11 :1 &"
+alias dev1="vncviewer 10.10.10.10 :1 &"
+alias dev2="vncviewer 10.10.10.13 :1 &"
+
+alias mcl="make clean && make"
+alias gpi="git pull origin integration"
+
+
+~/scripts/quote.sh
+

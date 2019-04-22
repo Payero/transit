@@ -1,0 +1,186 @@
+ForwardX11	true
+IdentityFile    ~/.ssh/oeg_rsa
+StrictHostKeyChecking no
+ServerAliveInterval 120
+#UserKnownHostsFile /dev/null
+
+
+Host axgit
+	HostName	dev.axiosengineering.com
+	User		git
+
+Host repo
+        HostName        dev.axiosengineering.com
+        User            git
+
+Host server
+	HostName	52.205.26.225
+	User            oeg
+	#IdentityFile	~/.ssh/aws_serv_server.pem
+
+Host brecky
+        HostName        52.205.26.225
+        User            oeg
+
+Host laptop
+	HostName 	10.215.35.247
+	User		oeg
+	ForwardX11	false
+
+Host axdevlx
+	Hostname	10.10.20.10
+
+Host dev
+	Hostname	10.10.20.10
+
+Host 10.215.*
+	User oegante
+
+Host portal
+	HostName	gclportal.lgsdirect.com
+	User	oganteaume
+	IdentityFile   ~/.ssh/id_oeg_ed25519
+
+ 
+Host axiosws-msk
+  Hostname  axiosws-112a
+
+Host simlab3
+  HostName 10.209.142.143
+  User     oegante
+  ProxyCommand ssh portal -W %h:%p
+
+
+############################################################################
+##                             HFP Servers                                ##
+############################################################################
+Host cns
+  HostName 10.209.117.244
+  ProxyCommand ssh portal -W %h:%p
+  
+Host wallops
+  HostName 10.209.117.146
+  ProxyCommand ssh portal -W %h:%p 
+
+Host miami
+  HostName 10.209.117.151
+  ProxyCommand ssh portal -W %h:%p
+
+Host suitland
+  HostName 10.209.117.148
+  ProxyCommand ssh portal -W %h:%p
+
+Host carriers
+  HostName 10.209.117.245
+  ProxyCommand ssh portal -W %h:%p
+
+
+############################################################################
+##                            Dev Servers                                 ##
+############################################################################
+Host cns-dev
+  HostName 10.209.117.193
+  ProxyCommand ssh portal -W %h:%p 
+ 
+Host miami-dev
+  HostName 10.209.117.194
+  ProxyCommand ssh portal -W %h:%p
+
+
+
+
+############################################################################
+##                        Dulles CNS Servers                              ##
+############################################################################
+Host cns-dulles
+  User oegante
+  HostName 10.10.10.12
+
+Host util
+  User oegante
+  HostName 10.10.10.14
+
+Host miami-dulles
+  User oegante
+  HostName 10.10.10.9
+
+Host suitland-dulles
+  User oegante
+  HostName 10.10.10.15
+
+Host wallops-dulles
+  User oegante
+  HostName 10.10.10.11
+
+Host dev1
+  User oegante
+  HostName 10.10.10.10
+
+Host dev2
+  User oegante
+  HostName 10.10.10.13
+
+
+
+
+
+############################################################################
+##                           SCS 1 Servers                                ##
+############################################################################
+ 
+Host cns-util
+  HostName 10.209.117.129
+  ProxyCommand ssh portal -W %h:%p
+
+Host cns-vm-03
+  HostName 10.209.117.212
+  ProxyCommand ssh portal -W %h:%p
+
+Host cns-vm-04
+  HostName 10.209.117.136
+  ProxyCommand ssh portal -W %h:%p
+
+Host carriers
+  HostName 10.209.117.245
+  ProxyCommand ssh portal -W %h:%p
+
+Host cns-vm-06
+  HostName 10.209.117.211
+  ProxyCommand ssh portal -W %h:%p
+
+Host cns-vm-08
+  HostName 10.209.117.230
+  ProxyCommand ssh portal -W %h:%p
+
+
+
+
+
+
+############################################################################
+##                             SCS Servers                                ##
+############################################################################
+ 
+Host scs-util
+  HostName 10.209.117.160
+  ProxyCommand ssh portal -W %h:%p
+
+
+Host scs-vm-05
+  HostName 10.209.117.152
+  ProxyCommand ssh portal -W %h:%p
+
+Host scs-vm-06
+  HostName 10.209.117.149
+  ProxyCommand ssh portal -W %h:%p
+
+Host scs-vm-08
+  HostName 10.209.117.159
+  ProxyCommand ssh portal -W %h:%p
+
+
+
+
+
+
+

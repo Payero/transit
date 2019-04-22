@@ -1,0 +1,60 @@
+[user]
+        email = OGanteaume@LGSInnovations.com
+        name = Oscar E. Ganteaume
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = auto
+
+[merge]
+  summary = true
+  tool = meld_cust
+  conflictstyle = diff3
+
+[mergetool "meld_cust"]
+  cmd = /usr/bin/meld --auto-merge $LOCAL $BASE $REMOTE --output $MERGED
+
+[diff]
+  
+  guitool = meld
+  submodule = log
+
+[difftool "meld"]
+  cmd = meld $LOCAL $REMOTE --label \"DIFF (ORIGINAL MY)\"
+
+
+[alias]
+  cp = cherry-pick -x
+  b = branch -v
+  r = remote -v
+  st = status
+  stu = status -uno
+  br = branch
+  com = commit
+  co = checkout
+  l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+  ll = log --stat --abbrev-commit
+  spull = !git pull && git submodule sync --recursive && git submodule update --init --recursive
+
+
+[branch]
+  autorebase = always
+
+[push]
+  default = tracking
+
+[credential]
+  helper = /usr/libexec/git-core/git-credential-gnome-keyring
+
+[rerere]
+	enabled = true
+
+[core]
+	editor = vim
+
+[status]
+  submoduleSummary = true
+

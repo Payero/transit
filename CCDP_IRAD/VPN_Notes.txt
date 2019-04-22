@@ -1,0 +1,27 @@
+184.75.234.240
+Group Authentication:
+	Name: govcovpnra
+	Password: L8xd0c2M
+
+ |-----------------------------------------------------------|
+ |   Authenticate VPN                                        |
+ |-----------------------------------------------------------|
+ |                                                           |
+ |   You need to authenticate to access the                  |
+ |   Virtual Private Network 'LGS'                           |
+ |                                                           |
+ |   Password:       {personal-factor}{RSA-key-factor}       |
+ |   Group Password: L8xd0c2M                                |
+ |                                                           |
+ |                                                           | 
+ |-----------------------------------------------------------|
+
+
+
+If VPN fails to connect it might be because the VPNC got overwritten so need to reinstall modified version:
+
+
+  - sudo dpkg -i /home/oeg/Documents/vpn/vpnc_0.5.3r512-2ubuntu1_amd64.deb
+  - sudo service network-manager restart
+
+
